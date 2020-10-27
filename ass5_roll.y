@@ -54,24 +54,24 @@ void yyerror(const char*);
 %token VOID
 %token VOLATILE
 %token DECREMENT
-%token LSHIFT
-%token RSHIFT
-%token LESS_THAN_EQUAL_TO
-%token GREATER_THAN_EQUAL_TO
-%token DOUBLE_EQUAL
+%token LEFT_SHIFT
+%token RIGHT_SHIFT
+%token LSOE
+%token GTOE
+%token IS_EQUAL
 %token NOT_EQUAL
-%token BINARY_AND
-%token BINARY_OR
-%token ELLIPSIS
-%token STAR_EQUAL
-%token SLASH_EQUAL
-%token PERCENTILE_EQUAL
+%token AND
+%token OR
+%token TRIPLE_DOT
+%token MULTIPLY_EQUAL
+%token DIVIDE_EQUAL
+%token PERCENT_EQUAL
 %token PLUS_EQUAL
 %token MINUS_EQUAL
 %token LEFT_SHIFT_EQUAL
 %token RIGHT_SHIFT_EQUAL
 %token AND_EQUAL
-%token XOR_EQUAL
+%token HAT_EQUAL
 %token OR_EQUAL
 %token AUTO
 %token BREAK 
@@ -824,7 +824,7 @@ shift_expression:
 				{
 					$$ = $1;
 				}
-				|shift_expression LSHIFT additive_expression
+				|shift_expression LEFT_SHIFT additive_expression
 				{
 					if(typecheck($1.type, $3.type)){
 			  		$$.loc = current->gentemp(($1.type)->down);
@@ -836,7 +836,7 @@ shift_expression:
 			  		$$.type = $1.type;
 	  				}
 				}
-				|shift_expression RSHIFT additive_expression
+				|shift_expression RIGHT_SHIFT additive_expression
 				{
 				  	if(typecheck($1.type, $3.type)){
 				  		$$.loc = current->gentemp(($1.type)->down);
@@ -879,7 +879,7 @@ relational_expression:
 					  	quad_array->emit(y);
 					  	$$.type = new_node(BOOL_,-1);
 					  }
-					 |relational_expression LESS_THAN_EQUAL_TO shift_expression
+					 |relational_expression LSOE shift_expression
 					 {
 					  	$$.TL = makelist(next_instr);
 					  	char *arg1 = strdup(($1.loc)->name);
@@ -891,7 +891,7 @@ relational_expression:
 					  	quad_array->emit(y);
 					  	$$.type = new_node(BOOL_,-1);
 					  }
-					 |relational_expression GREATER_THAN_EQUAL_TO shift_expression
+					 |relational_expression GTOE shift_expression
 				 	{
 					  	$$.TL = makelist(next_instr);
 					  	char *arg1 = strdup(($1.loc)->name);
@@ -910,7 +910,7 @@ equality_expression:
 				   {
 				   		$$ = $1;
 				   }
-				   |equality_expression DOUBLE_EQUAL relational_expression
+				   |equality_expression IS_EQUAL relational_expression
 				   {
 					  	$$.TL = makelist(next_instr);
 					  	char *arg1 = strdup(($1.loc)->name);
@@ -998,7 +998,7 @@ logical_AND_expression:
 					  {
 					  	$$ = $1;
 					  }
-					  |logical_AND_expression BINARY_AND M inclusive_OR_expression 
+					  |logical_AND_expression AND M inclusive_OR_expression 
 					  {
 					  	backpatch($1.TL,$3);
 					  	$$.FL = merge($1.FL, $4.FL);
@@ -1012,7 +1012,7 @@ logical_OR_expression:
 					 {
 					  	$$ = $1;
 					  }
-					 |logical_OR_expression BINARY_OR M logical_AND_expression // M augmented so that if $1 is false then it jumps to $3
+					 |logical_OR_expression OR M logical_AND_expression // M augmented so that if $1 is false then it jumps to $3
 					 {
 					  	backpatch($1.FL,$3);
 					  	$$.TL = merge($1.TL,$4.TL);
@@ -1134,15 +1134,15 @@ assignment_operator:
 				   {
 				   	// do nothing
 				   }
-				   |STAR_EQUAL
+				   |MULTIPLY_EQUAL
 				   {
 				   	// no action
 				   }
-				   |SLASH_EQUAL
+				   |DIVIDE_EQUAL
 				   {
 				   // DO NOTHING
 				   }
-				   |PERCENTILE_EQUAL
+				   |PERCENT_EQUAL
 				   {
 				   	// NO ACTION
 				   }
@@ -1166,7 +1166,7 @@ assignment_operator:
 				   {
 				   	// NO ACTION
 				   }
-				   |XOR_EQUAL
+				   |HAT_EQUAL
 				   {
 				   	// NO ACTION
 				   }
@@ -1194,131 +1194,123 @@ constant_expression:
 				   }
 				   ;
 
-declaration
-	: declaration_specifiers ';'
-	  {
-	  	// not in use
-	  }
-	| declaration_specifiers init_declarator_list ';'
-	  {
-	  	if(flag1 == 1 && flag2 == 0){
-	  		tNode *temp = new_node(($1.type)->down,-1);
-	  		char *temp1 = strdup("retVal");
-	  		symbol_table_fields x(temp1,temp,0,$1.width,-1,0);
-	  		temp_use->insert(x);
-	  		temp = new_node(FUNCTION,-1);
-	  		symbol_table_fields y($2.var,temp,0,0,-1,temp_use);
-	  		symbol_table->insert(y);
-	  	}
-	  	flag1 = 0;
-	  	flag2 = 0;
-	  	c = 0;
-	  }
-	;
-
-declaration_specifiers
-	: storage_class_specifier {/* not in use*/}
-	| storage_class_specifier declaration_specifiers {/* not in use*/}
-	| type_specifier 
-	{
-	  	if(flag1 == 0 || flag2 == 0){
-	  		$$.type = $1.type;
-	  		$$.width = $1.width;
-	  		t = $$.type;
-	  		w = $$.width;
-	  	}
-	}
-	| type_specifier declaration_specifiers {/* not in use*/}
-	| type_qualifier {/* not in use*/}
-	| type_qualifier declaration_specifiers {/* not in use*/}
-	| function_specifier {/* not in use*/}
-	| function_specifier declaration_specifiers {/* not in use*/}
-	;
-
-init_declarator_list
-	: init_declarator
-	  {
-	  	if(flag1 == 1 && flag2 == 0)
-	  		$$.var = $1.var;
-	  }
-	| init_declarator_list ',' init_declarator
-	  {
-
-	  }
-	;
-
-init_declarator
-	: declarator
-	  {
-	  	if(flag1 == 0){
-	  		tNode *temp = new_node(t->down,-1);
-	  		temp = merge_node($1.type,temp);
-	  		int temp_size;
-	  		if(temp->down == PTR)
-	  			temp_size = SIZE_OF_PTR;
-	  		else{
-		  		switch(t->down){
-		  			case INT_ : temp_size = SIZE_OF_INT;
-		  					   break;
-		  			case DOUBLE_ : temp_size = SIZE_OF_DOUBLE;
-		  						  break;
-		  			case CHAR_   : temp_size = SIZE_OF_CHAR;
-		  						  break; 	
+declaration: 
+			declaration_specifiers ';'
+	  		{
+	  		// not in use
+	  		}
+			| declaration_specifiers init_declarator_list ';'
+	  		{
+	  			if(flag1 == 1 && flag2 == 0){
+	  				tNode *temp = new_node(($1.type)->down,-1);
+	  				char *temp1 = strdup("retVal");
+	  				symbol_table_fields x(temp1,temp,0,$1.width,-1,0);
+	  				temp_use->insert(x);
+	  				temp = new_node(FUNCTION,-1);
+	  				symbol_table_fields y($2.var,temp,0,0,-1,temp_use);
+	  				symbol_table->insert(y);
 	  			}
+	  			flag1 = 0;
+	  			flag2 = 0;
+	  			c = 0;
 	  		}
-	  		temp_size = temp_size * $1.width;
-	  		symbol_table_fields x($1.var,temp,0,temp_size,-1,0);
-	  		current->insert(x);
-	  		//current->print_Table();
-	  	}
-	  	else if(flag1 == 1 && flag2 == 0){
-	  		$$.var = $1.var;
-	  	}
-	  }
-	| declarator '=' initializer
-	  {
-	  	if(flag1 == 0){
-	  		tNode *temp = new_node(t->down,-1);
-	  		temp = merge_node($1.type,temp);
-	  		void *value;
-	  		int *v1;
-	  		double *v2;
-	  		char *v3;
-	  		int temp_size;
-	  		switch(t->down){
-	  			case INT_ : v1 = (int *)malloc(sizeof(int));
-	  					   (*v1) = $3.int_data; 	
-	  					   value = (void *)v1;
-	  					   temp_size = SIZE_OF_INT;
-	  					   break;
-	  			case DOUBLE_ : v2 = (double *)malloc(sizeof(double));
-		  					   (*v2) = $3.double_data;
-		  					   //printf("%lf\n",$3.double_data); 	
-		  					   value = (void *)v2;
-		  					   //printf("%lf\n",*v2);
-		  					   temp_size = SIZE_OF_DOUBLE;
-		  					   break;
-	  			case CHAR_   :v3 = (char *)malloc(sizeof(char));
-	  					   (*v3) = $3.char_data; 	
-	  					   value = (void *)v3;
-	  					   temp_size = SIZE_OF_CHAR;
-	  					   break;
-	  			default     : value = 0; 	
-	  		}
-	  		temp_size = temp_size * $1.width;
-	  		symbol_table_fields x($1.var,temp,value,temp_size,-1,0);
-	  		current->insert(x);
-	  	}
-	  }
 	;
 
+declaration_specifiers:
+	 				   storage_class_specifier {/* not in use*/}
+					   | storage_class_specifier declaration_specifiers {/* not in use*/}
+	                   | type_specifier 
+	                   {
+	  	                   if(flag1 == 0 || flag2 == 0){
+	  		               	   $$.type = $1.type;
+	  		               	   $$.width = $1.width;
+	  		               	   t = $$.type;
+	  		               	   w = $$.width;
+	  	                   }
+	                   }
+	 				   | type_specifier declaration_specifiers {/* not in use*/}
+	 				   | type_qualifier {/* not in use*/}
+	 				   | type_qualifier declaration_specifiers {/* not in use*/}
+	 				   | function_specifier {/* not in use*/}
+	 				   | function_specifier declaration_specifiers {/* not in use*/}
+	 				   ;
 
+init_declarator_list: 
+					init_declarator
+	  				{	
+	  					if(flag1 == 1 && flag2 == 0)
+	  						$$.var = $1.var;
+	  				}
+					| init_declarator_list ',' init_declarator
+	  				{
 
+	  				}
+					;
 
-
-
-
-
+init_declarator: 
+				declarator
+	  			{
+	  				if(flag1 == 0){
+	  					tNode *temp = new_node(t->down,-1);
+	  					temp = merge_node($1.type,temp);
+	  					int temp_size;
+	  					if(temp->down == PTR)
+	  						temp_size = SIZE_OF_PTR;
+	  					else{
+		  					switch(t->down){
+		  						case INT_ : temp_size = SIZE_OF_INT;
+		  					   		break;
+		  						case DOUBLE_ : temp_size = SIZE_OF_DOUBLE;
+		  						    break;
+		  						case CHAR_ : temp_size = SIZE_OF_CHAR;
+		  						    break; 	
+	  						}
+	  					}
+	  					temp_size = temp_size * $1.width;
+	  					symbol_table_fields x($1.var,temp,0,temp_size,-1,0);
+	  					current->insert(x);
+	  					//current->print_Table();
+	  				}
+	  				else if(flag1 == 1 && flag2 == 0){
+	  					$$.var = $1.var;
+	  				}
+	  			}
+				| declarator '=' initializer
+	  			{
+	  				if(flag1 == 0){
+	  					tNode *temp = new_node(t->down,-1);
+	  					temp = merge_node($1.type,temp);
+	  					void *value;
+	  					int *v1;
+	  					double *v2;
+	  					char *v3;
+	  					int temp_size;
+	  					switch(t->down){
+	  						case INT_ : v1 = (int *)malloc(sizeof(int));
+	  							(*v1) = $3.int_data; 	
+	  						    value = (void *)v1;
+	  							temp_size = SIZE_OF_INT;
+	  							break;
+	  						case DOUBLE_ : v2 = (double *)malloc(sizeof(double));
+		  					   	(*v2) = $3.double_data;
+							   	//printf("%lf\n",$3.double_data); 	
+  							   	value = (void *)v2;
+		  						//printf("%lf\n",*v2);
+		  						temp_size = SIZE_OF_DOUBLE;
+		  						break;
+	  						case CHAR_ :v3 = (char *)malloc(sizeof(char));
+	  							(*v3) = $3.char_data; 	
+	  							value = (void *)v3;
+	  						   temp_size = SIZE_OF_CHAR;
+	  							break;
+	  						default     : value = 0; 	
+	  					}
+	  					temp_size = temp_size * $1.width;
+	  					symbol_table_fields x($1.var,temp,value,temp_size,-1,0);
+	  					current->insert(x);
+	  				}
+	  			}
+				;
 
 storage_class_specifier:
 					   EXTERN{}
@@ -1534,7 +1526,7 @@ type_qualifier_list_optional:
 
 parameter_type_list:
 				   parameter_list {}
-				   |parameter_list ',' ELLIPSIS{}
+				   |parameter_list ',' TRIPLE_DOT{}
 				   ;
 
 parameter_list:
@@ -1776,7 +1768,7 @@ N:
 		quad_array->emit(x);
 	}
 	;
-F   :
+F:
 	{
 		current = temp_use;
 		int i;

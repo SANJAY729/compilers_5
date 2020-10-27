@@ -2,49 +2,47 @@
 #include <stdio.h>
 #include "ass5_roll_translator.h"
 #include "y.tab.h"
+#include <math.h>
 %}
 
-SINGLELINE_COMMENT  \/\/.*
-MULTILINE_COMMENT	"/"\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+"/"
-IDENTIFIER			[_a-zA-Z][_a-zA-Z0-9]*
-DIGIT		 		[0-9]
-INTEGER_CONST		[1-9]{DIGIT}*|0
-FLOATING_CONST		(((([0-9]+)?\.[0-9]+)|([0-9]+\.))([eE][+-]?[0-9]+)?)|([0-9]+[eE][+-]?[0-9]+)
-ENUMERATION_CONST	[_a-zA-Z][_a-zA-Z0-9]* 
-ESCAPE_SEQUENCE		\\['"?\\abfnrtv]
-C_CHAR				[^'\\\n]|{ESCAPE_SEQUENCE}
-C_CHAR_SEQUENCE		{C_CHAR}+
-CHARACTER_CONST		\'{C_CHAR_SEQUENCE}\'
-CONSTANT            {INTEGER_CONST}|{FLOATING_CONST}|{ENUMERATION_CONST}|{CHARACTER_CONST}
-S_CHAR				[^"\\\n]|{ESCAPE_SEQUENCE}
-PUNCTUATOR			"["|"]"|"."|"&"|"*"|"+"|"-"|"~"|"!"|"/"|"("|")"|"{"|"}"|"%"|","|"<"|">"|"^"|"|"|"="|"?"|":"|";"|"#"
-S_CHAR_SEQUENCE		{S_CHAR}+
-STRING_LITERAL		\"{S_CHAR_SEQUENCE}?\"
-WS 					[ \t\n]
+digit 					[0-9]
+identifier-nondigit 	[a-zA-Z]
+identifier 				(({identifier-nondigit}+)({digit}*))+
+
+nonzero-digit 			[1-9]
+integer-constant		{nonzero-digit}{digit}*|0
+
+sign					"+"|"-"
+digit-sequence 			{digit}+
+exponent-part		  	e({sign})?{digit-sequence}|E({sign})?{digit-sequence}
+fractional-constant 	({digit-sequence})?"."{digit-sequence}|{digit-sequence}"."
+floating-constant 		{fractional-constant}({exponent-part})?|{digit-sequence}{exponent-part}
+
+ENUMERATION_CONST	[_a-zA-Z][_a-zA-Z0-9]*
+
+slash					[\\]
+singlequote				[\']
+doublequote				[\"]
+questionmark			[\?]
+escape-sequence 		{slash}{singlequote}|{slash}{doublequote}|{slash}{slash}|{slash}{questionmark}|"\\a"|"\\b"|"\\f"|"\\n"|"\\r"|"\\t"|"\\v"
+c-char 					{escape-sequence}|[^'\\\n]
+c-char-sequence			({c-char})+
+character-constant		\'{c-char-sequence}\'
+
+constant 				{integer-constant}|{floating-constant}|{character-constant}
+
+s-char					{escape-sequence}|[^"\\\n]
+s-char-sequence			({s-char})+
+string-literal			\"({s-char-sequence})?\"
+
+single-char-punctuator	"["|"]"|"."|"&"|"*"|"+"|"-"|"~"|"!"|"/"|"("|")"|"{"|"}"|"%"|","|"<"|">"|"^"|"|"|"="|"?"|":"|";"|"#"
+
+singleline-comments		\/\/(.*)
+multiline-comments 		\/\*(.|\n)*\*\/
+white-space 					    [ \t\n]
 
 %%
-"->"				{return ARROW;}
-"++"				{return INCREMENT;}
-"--"				{return DECREMENT;}
-"<<"				{return LSHIFT;}
-">>"				{return RSHIFT;}
-"<="				{return LESS_THAN_EQUAL_TO;}
-">="				{return GREATER_THAN_EQUAL_TO;}
-"=="				{return DOUBLE_EQUAL;}
-"!="				{return NOT_EQUAL;}
-"&&"				{return BINARY_AND;}
-"||"				{return BINARY_OR;}
-"..."				{return ELLIPSIS;}
-"*="				{return STAR_EQUAL;}
-"/="				{return SLASH_EQUAL;}
-"%="				{return PERCENTILE_EQUAL;}
-"+="				{return PLUS_EQUAL;}
-"-="				{return MINUS_EQUAL;}
-"<<="				{return LEFT_SHIFT_EQUAL;}
-">>="				{return RIGHT_SHIFT_EQUAL;}
-"&="				{return AND_EQUAL;}
-"^="				{return XOR_EQUAL;}
-"|="				{return OR_EQUAL;}
+
 "auto"				{return AUTO;}
 "break"				{return BREAK;}
 "case"				{return CASE;}
@@ -82,14 +80,40 @@ WS 					[ \t\n]
 "_Bool"				{return BOOL;}
 "_Complex"			{return COMPLEX;}
 "_Imaginary"		{return IMAGINARY;}
-{IDENTIFIER}		{(yylval.id_attr).var = strdup(yytext);return IDENTIFIER;}
-{INTEGER_CONST}		{yylval.intval = atoi(yytext); return INTEGER_NO;} 
-{FLOATING_CONST}	{yylval.floatval = atof(yytext);return FLOAT_NO;}
-{CHARACTER_CONST}	{yylval.charval = yytext[1];return CHARACTER;}
-{STRING_LITERAL}	{yylval.strval = strdup(yytext); return STRING;}
-{PUNCTUATOR}		{return yytext[0];}
-{SINGLELINE_COMMENT}    {}
-{MULTILINE_COMMENT}	{}
-{WS}				{}
+
+{identifier}		        {(yylval.id_attr).var = strdup(yytext);return IDENTIFIER;}
+{integer-constant}		    {yylval.intval = atoi(yytext); return INTEGER_NO;} 
+{floating-constant}	        {yylval.floatval = atof(yytext);return FLOAT_NO;}
+{character-constant}	    {yylval.charval = yytext[1];return CHARACTER;}
+{string-literal}	        {yylval.strval = strdup(yytext); return STRING;}
+
+"->"				{return ARROW;}
+"++"				{return INCREMENT;}
+"--"				{return DECREMENT;}
+"<<"				{return LEFT_SHIFT;}
+">>"				{return RIGHT_SHIFT;}
+"<="				{return LSOE;}
+">="				{return GTOE;}
+"=="				{return IS_EQUAL;}
+"!="				{return NOT_EQUAL;}
+"&&"				{return AND;}
+"||"				{return OR;}
+"..."				{return TRIPLE_DOT;}
+"*="				{return MULTIPLY_EQUAL;}
+"/="				{return DIVIDE_EQUAL;}
+"%="				{return PERCENT_EQUAL;}
+"+="				{return PLUS_EQUAL;}
+"-="				{return MINUS_EQUAL;}
+"<<="				{return LEFT_SHIFT_EQUAL;}
+">>="				{return RIGHT_SHIFT_EQUAL;}
+"&="				{return AND_EQUAL;}
+"^="				{return HAT_EQUAL;}
+"|="				{return OR_EQUAL;}
+
+{single-char-punctuator}	{return yytext[0];}
+{singleline-comments}       {}
+{multiline-comments}        {}
+{white-space}               {}
+
 %%
 int yywrap(){}
