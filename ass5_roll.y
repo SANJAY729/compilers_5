@@ -175,7 +175,7 @@ primary_expression:
 					}
 					|STRING
 					{
-						// not required 
+						// not needed 
 					}
 					|'(' expression ')'
 					{
@@ -256,11 +256,11 @@ postfix_expression:
 					  }
 				  	|postfix_expression '.' IDENTIFIER
 				  	{
-				  		// not to be implemented
+				  		// not required
 				  	}
 				  	|postfix_expression ARROW IDENTIFIER
 				  	{
-				  		// not to be implemented
+				  		// not required
 				  	}
 				  	|postfix_expression INCREMENT
 				  	{
@@ -294,11 +294,11 @@ postfix_expression:
 				  	}
 				  	|'(' type_name ')' '{' initializer_list '}'
 				  	{
-				  		// not to be implemented
+				  		// not required
 				  	}
 				  	|'(' type_name ')' '{' initializer_list ',' '}'
 				  	{
-				  		// not to be implemented
+				  		// not required
 				  	}
 				  ;
 
@@ -367,11 +367,11 @@ unary_expression:
 				}
 				|SIZEOF unary_expression
 				{
-					// not to be implemented
+					// not required
 				}
 				|SIZEOF '(' type_name ')' 
 				{
-					// not to be implemented
+					// not required
 				}
 				;					 
 
@@ -409,7 +409,7 @@ cast_expression:
 			   }
 			   |'(' type_name ')' cast_expression
 			   {
-			   		// not to be implemented 
+			   		// not required 
 			   }
 			   ;
 
@@ -1000,7 +1000,7 @@ logical_OR_expression:
 					 {
 					  	$$ = $1;
 					  }
-					 |logical_OR_expression OR M logical_AND_expression // M augmented so that if $1 is false then it jumps to $3
+					 |logical_OR_expression OR M logical_AND_expression // M : Marker rule
 					 {
 					  	backpatch($1.FL,$3);
 					  	$$.TL = merge($1.TL,$4.TL);
@@ -1014,7 +1014,7 @@ conditional_expression:
 					  {
 					  	$$ = $1;
 					  }
-					  |logical_OR_expression N '?' M  expression N ':' M  conditional_expression	// M and N augmented
+					  |logical_OR_expression N '?' M  expression N ':' M  conditional_expression	// M : Marker rule , N : Fall-through guard rule
 					  {
 					  	$$.loc = current->gentemp(($5.type)->down);
 					  	$$.type = $5.type;
@@ -1120,7 +1120,7 @@ assignment_expression:
 assignment_operator:
 				   '='
 				   {
-				   	// do nothing
+				   	// no action
 				   }
 				   |MULTIPLY_EQUAL
 				   {
@@ -1128,39 +1128,39 @@ assignment_operator:
 				   }
 				   |DIVIDE_EQUAL
 				   {
-				   // DO NOTHING
+				    // no action
 				   }
 				   |PERCENT_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |PLUS_EQUAL
 				   {
-				   // NO ACTION
+				   // no action
 				   }
 				   |MINUS_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |LEFT_SHIFT_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |RIGHT_SHIFT_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |AND_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |HAT_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   |OR_EQUAL
 				   {
-				   	// NO ACTION
+				   	// no action
 				   }
 				   ;						 
 
@@ -1171,21 +1171,21 @@ expression:
 		  }
 		  |expression ',' assignment_expression
 		  {
-		  	// not to be implemented
+		  	// not required
 		  }
 		  ;
 		   
 constant_expression:
 				   conditional_expression
 				   {
-				   	// do nothing
+				   	// no action
 				   }
 				   ;
 
 declaration: 
 			declaration_specifiers ';'
 	  		{
-	  		// not in use
+	  		// not required
 	  		}
 			| declaration_specifiers init_declarator_list ';'
 	  		{
@@ -1205,8 +1205,8 @@ declaration:
 	;
 
 declaration_specifiers:
-	 				   storage_class_specifier {/* not in use*/}
-					   | storage_class_specifier declaration_specifiers {/* not in use*/}
+	 				   storage_class_specifier {/* not required*/}
+					   | storage_class_specifier declaration_specifiers {/* not required*/}
 	                   | type_specifier 
 	                   {
 	  	                   if(flag1 == 0 || flag2 == 0){
@@ -1216,11 +1216,11 @@ declaration_specifiers:
 	  		               	   w = $$.width;
 	  	                   }
 	                   }
-	 				   | type_specifier declaration_specifiers {/* not in use*/}
-	 				   | type_qualifier {/* not in use*/}
-	 				   | type_qualifier declaration_specifiers {/* not in use*/}
-	 				   | function_specifier {/* not in use*/}
-	 				   | function_specifier declaration_specifiers {/* not in use*/}
+	 				   | type_specifier declaration_specifiers {/* not required*/}
+	 				   | type_qualifier {/* not required*/}
+	 				   | type_qualifier declaration_specifiers {/* not required*/}
+	 				   | function_specifier {/* not required*/}
+	 				   | function_specifier declaration_specifiers {/* not required*/}
 	 				   ;
 
 init_declarator_list: 
@@ -1323,12 +1323,9 @@ type_specifier:
 			  |SHORT{}
 			  |INT
 			  {
-			  	if(flag2 == 0 || flag1 == 0){
-			  		//printf("Yo1\n");
-			  		$$.type = new_node(INT_,-1);
-			  		//printf("Yo2\n");
-			  		$$.width = SIZE_OF_INT;
-			  		//printf("Yo3\n");
+			  	if(flag2 == 0 || flag1 == 0){			  		
+			  		$$.type = new_node(INT_,-1);			  		
+			  		$$.width = SIZE_OF_INT;			  		
 			  	}
 			  }
 			  |LONG{}
@@ -1387,21 +1384,11 @@ direct_declarator:
 						  	$$.type = 0;
 						  	$$.width = 1;
 						  	if(c == 0){
-						  		//printf("DD->Id me load hai kya?\n");
 						  		symbol_table_fields *t = current->lookup($1.var);
 							  	if(t){
 							  		flag2 = 1;
-							  		temp_use = (t->nestedTable);	// Set flag to handle multiple declaration
-							  		//printf("%s\n",(t->nestedTable)[0].name);
-							  		//printf("%p\n",temp_use);
-							  		//printf("%p\n",t->nestedTable);
-							  		//if(!temp_use)
-							  		//printf("Null hai\n");
-							  		//printf("%d\n",temp_use->curr_length);
-							  		//printf("%s\n",(temp_use->table)[0].name);
-							  		//temp_use->print_Table();
-							  		//printf("Type casting ka load nahi hai\n");
-							  	}												// (to be used in other actions)		
+							  		temp_use = (t->nestedTable);
+							  	}														
 							  	else                                            
 							  		flag2 = 0; 
 							  	c++;	
@@ -1490,16 +1477,16 @@ parameter_type_list:
 parameter_list:
 			  parameter_declaration
 			  {
-			  	if(flag2 == 0){										// An indication of the fact that function has not been
-			  		temp_use = construct_Symbol_Table();				// declared previously
-			  		symbol_table_fields x($1.var,$1.type,0,$1.width,-1,0); //Insert in sym tab of function(offset comp.in insert)
+			  	if(flag2 == 0){										
+			  		temp_use = construct_Symbol_Table();				
+			  		symbol_table_fields x($1.var,$1.type,0,$1.width,-1,0); 
 			  		temp_use->insert(x);
 			  	}
 			  }
 			  |parameter_list ',' parameter_declaration
 			  {
 			  	if(flag2 == 0){
-			  		symbol_table_fields x($3.var,$3.type,0,$3.width,-1,0); //Insert in sym tab of function(offset comp. in insert)
+			  		symbol_table_fields x($3.var,$3.type,0,$3.width,-1,0); 
 			  		temp_use->insert(x);
 			  		}
 	  			}
@@ -1699,7 +1686,7 @@ external_declaration:
 
 function_definition:
 				   declaration_specifiers declarator declaration_list compound_statement{}
-				   |declaration_specifiers declarator F compound_statement            	// augmenting F
+				   |declaration_specifiers declarator F compound_statement            	// F augmented
 				   {
 					  	current = symbol_table; 
 					}
@@ -1744,5 +1731,5 @@ F:
 %%
 
 void yyerror(const char *s) {
-    printf("Error occured : %s\n",s);
+    printf("Error: %s\n",s);
 }

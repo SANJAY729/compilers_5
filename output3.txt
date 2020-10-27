@@ -1,0 +1,18 @@
+_Error: syntax error
+
++++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
+
+                Name       Initial Value                Size              Offset        Nested Table              Type
+
+                  t0                null                   4                   0                null                int 
+                test                   1                    4                   4                null                int 
+                main                null                   0                   8              retVal           function 
+
++++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
+
+                Name       Initial Value                Size              Offset        Nested Table              Type
+
+              retVal                null                   4                   0                null                int 
+                 arr                null                   4                   4                null                int 
+  0) t0 = 1
+  1) main : 
