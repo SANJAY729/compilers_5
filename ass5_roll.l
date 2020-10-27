@@ -18,8 +18,6 @@ exponent-part		  	e({sign})?{digit-sequence}|E({sign})?{digit-sequence}
 fractional-constant 	({digit-sequence})?"."{digit-sequence}|{digit-sequence}"."
 floating-constant 		{fractional-constant}({exponent-part})?|{digit-sequence}{exponent-part}
 
-ENUMERATION_CONST	[_a-zA-Z][_a-zA-Z0-9]*
-
 slash					[\\]
 singlequote				[\']
 doublequote				[\"]
@@ -39,11 +37,10 @@ single-char-punctuator	"["|"]"|"."|"&"|"*"|"+"|"-"|"~"|"!"|"/"|"("|")"|"{"|"}"|"
 
 singleline-comments		\/\/(.*)
 multiline-comments 		\/\*(.|\n)*\*\/
-white-space 					    [ \t\n]
+white-space 			[ \t\n]
 
 %%
 
-"auto"				{return AUTO;}
 "break"				{return BREAK;}
 "case"				{return CASE;}
 "char"				{return CHAR;}
@@ -53,7 +50,6 @@ white-space 					    [ \t\n]
 "do"				{return DO;}
 "double"			{return DOUBLE;}
 "else"				{return ELSE;}
-"enum"				{return ENUM;}
 "extern"			{return EXTERN;}
 "float"				{return FLOAT;}
 "for"				{return FOR;}
@@ -62,24 +58,15 @@ white-space 					    [ \t\n]
 "inline"			{return INLINE;}
 "int"				{return INT;}
 "long"				{return LONG;}
-"register"			{return REGISTER;}
 "restrict"			{return RESTRICT;}
 "return"			{return RETURN;}
 "short"				{return SHORT;}
-"signed"			{return SIGNED;}
 "sizeof"			{return SIZEOF;}
 "static"			{return STATIC;}
-"struct"			{return STRUCT;}
 "switch"			{return SWITCH;}
-"typedef"			{return TYPEDEF;}
-"union"				{return UNION;}
-"unsigned"			{return UNSIGNED;}
 "void"				{return VOID;}
 "volatile"			{return VOLATILE;}
 "while"				{return WHILE;}
-"_Bool"				{return BOOL;}
-"_Complex"			{return COMPLEX;}
-"_Imaginary"		{return IMAGINARY;}
 
 {identifier}		        {(yylval.id_attr).var = strdup(yytext);return IDENTIFIER;}
 {integer-constant}		    {yylval.intval = atoi(yytext); return INTEGER_NO;} 

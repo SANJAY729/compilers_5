@@ -40,9 +40,7 @@ symbolTable::symbolTable(unsigned int capacity){
 }
 symbolTable::~symbolTable(){}
 symbol_table_fields *symbolTable::lookup(char *t){											
-	int i, j;
-	i = 0; j = 0;
-	i = j && i;
+	int i = 0;
 	for(i = 0;i<=curr_length;i++){
 		if(strcmp(table[i].name,t) == 0)
 			return (table + i);
@@ -79,7 +77,7 @@ symbol_table_fields *symbolTable::gentemp(date_types temp){
 					break;
 		case CHAR_ : temp_size = SIZE_OF_CHAR;
 					break;
-		case DOUBLE_ : temp_size = SIZE_OF_DOUBLE;
+		case FLOAT_ : temp_size = SIZE_OF_FLOAT;
 					break;
 		case PTR : temp_size = SIZE_OF_PTR;
 					break;
@@ -258,7 +256,7 @@ void print_Tree(tNode *temp){
 			break;
 			case INT_ : cout<<"int ";
 			break;
-			case DOUBLE_ : cout<<"double ";
+			case FLOAT_ : cout<<"float ";
 			break;
 			case CHAR_ : cout<<"char ";
 			break;
@@ -280,7 +278,7 @@ void print_Initial_Value(void *temp, tNode *t){
 		switch(t->down){
 			case INT_ : cout<<setw(20)<<(*((int *)temp))<<" ";
 						break;
-			case DOUBLE_ : cout<<setw(20)<<(*((double *)temp))<<" ";
+			case FLOAT_ : cout<<setw(20)<<(*((float *)temp))<<" ";
 						break;
 			case CHAR_ : cout<<setw(20)<<(*((char *)temp))<<" ";
 						break;
@@ -364,7 +362,7 @@ int compute_width(tNode *temp){
 						break;
 			case INT_ : width *= 4;
 						break;
-			case DOUBLE_ : width *= 8;
+			case FLOAT_ : width *= 8;
 						break;
 			case CHAR_ : width *= 1;
 						break;

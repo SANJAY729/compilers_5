@@ -1,5 +1,5 @@
-double multiply_time_pass(double a,int b);
-char do_not_what_it_is(int a,double b, char c);
+float multiply_time_pass(float a,int b);
+char do_not_what_it_is(int a,float b, char c);
 int main();
 int main()
 {
@@ -10,7 +10,7 @@ int main()
         if(n<=10)
         {
             char a='a',b='b',c='c';
-            double dp[20][15];
+            float dp[20][15];
             char *d=&a;
             int k=9;
             int l=k+10;
@@ -32,9 +32,9 @@ int main()
     
 }
 
-double multiply_time_pass(double a,int b)
+float multiply_time_pass(float a,int b)
 {
-    double ans;
+    float ans;
     ans=a * b;
     ans = ans*a;
     a = b*ans;
@@ -42,9 +42,9 @@ double multiply_time_pass(double a,int b)
     return ans;
 }
 
-char do_not_what_it_is(int a,double b, char c)
+char do_not_what_it_is(int a,float b, char c)
 {
-    double kt=b;
+    float kt=b;
     char *p=&c;
     int i=a+b;
     return c;

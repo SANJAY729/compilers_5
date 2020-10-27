@@ -8,8 +8,8 @@ int main();
 int main()
 {
 	int ar1[5][10];
-	double ar2[10];
-	double y;
+	float ar2[10];
+	float y;
 	int z;
 	int x,y,z,w;
 	x = sum(a,b);
@@ -19,15 +19,15 @@ int main()
 }
 int sum(int a,int b)
 {
-	double ar2[10];
+	float ar2[10];
 	int ans=a+b;
 	return ans;
 }
 
 int mod(int a,int b)
 {
-	double armod[3];
-	double ans=a%b;
+	float armod[3];
+	float ans=a%b;
 	return ans;
 }
 

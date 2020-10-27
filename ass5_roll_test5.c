@@ -1,7 +1,7 @@
 int hello(int a, int b);
 int kaiseho(int a,int b,int c);
 int lol(int a,int b, int c);
-double dont_know_what_to_do(int a,int b,int c,int d);
+float dont_know_what_to_do(int a,int b,int c,int d);
 int main();
 int main()
 {
@@ -9,7 +9,7 @@ int main()
 	dont_know_what_to_do(a,b,c,d);
 	return 0;
 }
-double dont_know_what_to_do(int a,int b,int c,int d)
+float dont_know_what_to_do(int a,int b,int c,int d)
 {
 	kaiseho(a,b,c);
 	hello(a,b);

@@ -30,7 +30,6 @@ void yyerror(const char*);
 %token DO
 %token DOUBLE
 %token ELSE
-%token ENUM
 %token EXTERN
 %token FLOAT
 %token FOR
@@ -39,18 +38,12 @@ void yyerror(const char*);
 %token INLINE
 %token INT
 %token LONG
-%token REGISTER
 %token RESTRICT
 %token RETURN
 %token SHORT
-%token SIGNED
 %token SIZEOF
 %token STATIC
-%token STRUCT
 %token SWITCH
-%token TYPEDEF
-%token UNION
-%token UNSIGNED
 %token VOID
 %token VOLATILE
 %token DECREMENT
@@ -73,23 +66,18 @@ void yyerror(const char*);
 %token AND_EQUAL
 %token HAT_EQUAL
 %token OR_EQUAL
-%token AUTO
 %token BREAK 
 %token CASE 
 %token CHAR
 %token CONST
 %token WHILE
-%token BOOL
-%token COMPLEX
-%token IMAGINARY
 %token SINGLE_COMMENT
 %token MULTI_COMMENT
 %token <id_attr> IDENTIFIER
 %token <intval> INTEGER_NO
 %token <floatval> FLOAT_NO
 %token <charval> CHARACTER
-%token <strval> STRING
-%token <intval> ENUMERATION_CONSTANT			
+%token <strval> STRING			
 %token PUNCTUATOR
 %token WS
 
@@ -165,9 +153,9 @@ primary_expression:
 					}
 					|FLOAT_NO
 					{
-						$$.val.double_data = $1;
-						$$.type = new_node(DOUBLE_,-1);
-						$$.loc = current->gentemp(DOUBLE_);
+						$$.val.float_data = $1;
+						$$.type = new_node(FLOAT_,-1);
+						$$.loc = current->gentemp(FLOAT_);
 					  	char *arg1 = new char[10];
 					  	sprintf(arg1,"%lf",$1);
 					  	char *res = strdup(($$.loc)->name);
@@ -443,14 +431,14 @@ multiplicative_expression:
 						  	}
 						  	else{
 						  		symbol_table_fields *temp1, *temp2;
-						  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($1.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$1.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(temp1->name);
 						  			char *arg2 = strdup(($3.loc)->name);
 						  			res = strdup(temp2->name);
@@ -473,14 +461,14 @@ multiplicative_expression:
 						  			quad_array->emit(y);
 						  			$$.type = $1.type;
 						  		}
-						  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($3.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$3.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(($1.loc)->name);
 						  			char *arg2 = strdup(temp1->name);
 						  			res = strdup(temp2->name);
@@ -519,14 +507,14 @@ multiplicative_expression:
 						  	}
 						  	else{
 						  		symbol_table_fields *temp1, *temp2;
-						  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($1.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$1.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(temp1->name);
 						  			char *arg2 = strdup(($3.loc)->name);
 						  			res = strdup(temp2->name);
@@ -549,14 +537,14 @@ multiplicative_expression:
 						  			quad_array->emit(y);
 						  			$$.type = $1.type;
 						  		}
-						  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($3.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$3.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(($1.loc)->name);
 						  			char *arg2 = strdup(temp1->name);
 						  			res = strdup(temp2->name);
@@ -595,14 +583,14 @@ multiplicative_expression:
 						  	}
 						  	else{
 						  		symbol_table_fields *temp1, *temp2;
-						  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($1.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$1.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(temp1->name);
 						  			char *arg2 = strdup(($3.loc)->name);
 						  			res = strdup(temp2->name);
@@ -625,14 +613,14 @@ multiplicative_expression:
 						  			quad_array->emit(y);
 						  			$$.type = $1.type;
 						  		}
-						  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
-						  			temp1 = current->gentemp(DOUBLE_);
+						  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
+						  			temp1 = current->gentemp(FLOAT_);
 						  			char *arg1 = new char[100];
 						  			sprintf(arg1,"int2dbl(%s)",($3.loc)->name);
 						  			char *res = strdup(temp1->name);
 						  			fields_quad x(arg1,0,res,ASSIGN,$3.loc,0,temp1);
 						  			quad_array->emit(x);
-						  			temp2 = current->gentemp(DOUBLE_);
+						  			temp2 = current->gentemp(FLOAT_);
 						  			arg1 = strdup(($1.loc)->name);
 						  			char *arg2 = strdup(temp1->name);
 						  			res = strdup(temp2->name);
@@ -678,14 +666,14 @@ additive_expression:
 					  	}
 					  	else{
 					  		symbol_table_fields *temp1, *temp2;
-					  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
-					  			temp1 = current->gentemp(DOUBLE_);
+					  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
+					  			temp1 = current->gentemp(FLOAT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"int2dbl(%s)",($1.loc)->name);
 					  			char *res = strdup(temp1->name);
 					  			fields_quad x(arg1,0,res,ASSIGN,$1.loc,0,temp1);
 					  			quad_array->emit(x);
-					  			temp2 = current->gentemp(DOUBLE_);
+					  			temp2 = current->gentemp(FLOAT_);
 					  			arg1 = strdup(temp1->name);
 					  			char *arg2 = strdup(($3.loc)->name);
 					  			res = strdup(temp2->name);
@@ -708,14 +696,14 @@ additive_expression:
 					  			quad_array->emit(y);
 					  			$$.type = $1.type;
 					  		}
-					  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
-					  			temp1 = current->gentemp(DOUBLE_);
+					  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
+					  			temp1 = current->gentemp(FLOAT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"int2dbl(%s)",($3.loc)->name);
 					  			char *res = strdup(temp1->name);
 					  			fields_quad x(arg1,0,res,ASSIGN,$3.loc,0,temp1);
 					  			quad_array->emit(x);
-					  			temp2 = current->gentemp(DOUBLE_);
+					  			temp2 = current->gentemp(FLOAT_);
 					  			arg1 = strdup(($1.loc)->name);
 					  			char *arg2 = strdup(temp1->name);
 					  			res = strdup(temp2->name);
@@ -754,14 +742,14 @@ additive_expression:
 					  	}
 					  	else{
 					  		symbol_table_fields *temp1, *temp2;
-					  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
-					  			temp1 = current->gentemp(DOUBLE_);
+					  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
+					  			temp1 = current->gentemp(FLOAT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"int2dbl(%s)",($1.loc)->name);
 					  			char *res = strdup(temp1->name);
 					  			fields_quad x(arg1,0,res,ASSIGN,$1.loc,0,temp1);
 					  			quad_array->emit(x);
-					  			temp2 = current->gentemp(DOUBLE_);
+					  			temp2 = current->gentemp(FLOAT_);
 					  			arg1 = strdup(temp1->name);
 					  			char *arg2 = strdup(($3.loc)->name);
 					  			res = strdup(temp2->name);
@@ -784,14 +772,14 @@ additive_expression:
 					  			quad_array->emit(y);
 					  			$$.type = $1.type;
 					  		}
-					  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
-					  			temp1 = current->gentemp(DOUBLE_);
+					  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
+					  			temp1 = current->gentemp(FLOAT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"int2dbl(%s)",($3.loc)->name);
 					  			char *res = strdup(temp1->name);
 					  			fields_quad x(arg1,0,res,ASSIGN,$3.loc,0,temp1);
 					  			quad_array->emit(x);
-					  			temp2 = current->gentemp(DOUBLE_);
+					  			temp2 = current->gentemp(FLOAT_);
 					  			arg1 = strdup(($1.loc)->name);
 					  			char *arg2 = strdup(temp1->name);
 					  			res = strdup(temp2->name);
@@ -1078,7 +1066,7 @@ assignment_expression:
 					  	}
 					  	else{
 					  		symbol_table_fields *temp1, *temp2;
-					  		if(($1.type)->down == INT_ && ($3.type)->down == DOUBLE_){
+					  		if(($1.type)->down == INT_ && ($3.type)->down == FLOAT_){
 					  			temp1 = current->gentemp(INT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"dbl2int(%s)",($3.loc)->name);
@@ -1095,7 +1083,7 @@ assignment_expression:
 					  			quad_array->emit(x);
 					  			
 					  		}
-					  		else if(($1.type)->down == DOUBLE_ && ($3.type)->down == INT_){
+					  		else if(($1.type)->down == FLOAT_ && ($3.type)->down == INT_){
 					  			temp1 = current->gentemp(INT_);
 					  			char *arg1 = new char[100];
 					  			sprintf(arg1,"dbl2int(%s)",($1.loc)->name);
@@ -1260,7 +1248,7 @@ init_declarator:
 		  					switch(t->down){
 		  						case INT_ : temp_size = SIZE_OF_INT;
 		  					   		break;
-		  						case DOUBLE_ : temp_size = SIZE_OF_DOUBLE;
+		  						case FLOAT_ : temp_size = SIZE_OF_FLOAT;
 		  						    break;
 		  						case CHAR_ : temp_size = SIZE_OF_CHAR;
 		  						    break; 	
@@ -1282,7 +1270,7 @@ init_declarator:
 	  					temp = merge_node($1.type,temp);
 	  					void *value;
 	  					int *v1;
-	  					double *v2;
+	  					float *v2;
 	  					char *v3;
 	  					int temp_size;
 	  					switch(t->down){
@@ -1291,12 +1279,12 @@ init_declarator:
 	  						    value = (void *)v1;
 	  							temp_size = SIZE_OF_INT;
 	  							break;
-	  						case DOUBLE_ : v2 = (double *)malloc(sizeof(double));
-		  					   	(*v2) = $3.double_data;
-							   	//printf("%lf\n",$3.double_data); 	
+	  						case FLOAT_ : v2 = (float *)malloc(sizeof(float));
+		  					   	(*v2) = $3.float_data;
+							   	//printf("%lf\n",$3.float_data); 	
   							   	value = (void *)v2;
 		  						//printf("%lf\n",*v2);
-		  						temp_size = SIZE_OF_DOUBLE;
+		  						temp_size = SIZE_OF_FLOAT;
 		  						break;
 	  						case CHAR_ :v3 = (char *)malloc(sizeof(char));
 	  							(*v3) = $3.char_data; 	
@@ -1315,8 +1303,6 @@ init_declarator:
 storage_class_specifier:
 					   EXTERN{}
 					   |STATIC{}
-					   |AUTO{}
-					   |REGISTER{}
 					   ;
 
 type_specifier:
@@ -1346,20 +1332,14 @@ type_specifier:
 			  	}
 			  }
 			  |LONG{}
-			  |FLOAT{}
-			  |DOUBLE
+			  |FLOAT
 			  {
-			  	if(flag2 == 0 || flag1 == 0){
-			  		$$.type = new_node(DOUBLE_,-1);
-			  		$$.width = SIZE_OF_DOUBLE;
+				  if(flag2 == 0 || flag1 == 0){
+			  		$$.type = new_node(FLOAT_,-1);
+			  		$$.width = SIZE_OF_FLOAT;
 			  	}
 			  }
-			  |SIGNED{}
-			  |UNSIGNED{}
-			  |BOOL{}
-			  |COMPLEX{}
-			  |IMAGINARY{}
-			  |enum_specifier{}
+			  |DOUBLE{}
 			  ;
 
 specifier_qualifier_list:
@@ -1371,28 +1351,6 @@ specifier_qualifier_list_optional:
 							specifier_qualifier_list{}
 							|{}
 							;
-
-enum_specifier:
-			  ENUM identifier_optional '{' enumerator_list '}'
-			  {}
-			  |ENUM identifier_optional '{' enumerator_list ',' '}'
-			  {}
-			  |ENUM IDENTIFIER
-			  {}
-			  ;
-
-enumerator_list:
-			   ENUM{}
-			   |enumerator_list ',' enumerator
-			   {}
-			   ;
-
-enumerator:
-		  IDENTIFIER
-		  {}
-		  |IDENTIFIER '=' constant_expression
-		  {}
-		  ;
 
 type_qualifier:
 			  CONST{}
@@ -1752,10 +1710,6 @@ declaration_list:
 				|declaration_list declaration{}
 				;
 
-identifier_optional:
-			  IDENTIFIER{}
-			  |{}
-			  ;
 M:
 				{
 					$$ = next_instr;

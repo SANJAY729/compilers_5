@@ -3,7 +3,7 @@
 
 # define SIZE_OF_CHAR 1
 # define SIZE_OF_INT 4
-# define SIZE_OF_DOUBLE 8
+# define SIZE_OF_FLOAT 8
 # define SIZE_OF_PTR 4
 
 // Maxsize for symbol table
@@ -17,7 +17,7 @@ enum quad_data_types {DEFAULT_, PLUS, MINUS, INTO, DIV, PERCENT, U_PLUS, U_MINUS
   				BW_INOR, LOG_AND, LOG_OR, goto_LT, goto_LTE, goto_GT, goto_GTE, goto_EQ, goto_NEQ, call,
     			EQ_BRACKET, BRACKET_EQ, U_ADDR, U_STAR, ASSIGN, GOTO_, IF_GOTO, IF_FALSE_GOTO};
 
-enum date_types { ARRAY, PTR, FUNCTION, VOID_, CHAR_, INT_, DOUBLE_, BOOL_};
+enum date_types { ARRAY, PTR, FUNCTION, VOID_, CHAR_, INT_, FLOAT_, BOOL_};
 
 
 typedef struct lnode{														
@@ -71,7 +71,7 @@ typedef struct fields_quad{
 
 typedef union attribute{										
 	int int_data;
-	double double_data;
+	float float_data;
 	char char_data;
 }attribute;
 
