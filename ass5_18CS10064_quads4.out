@@ -1,14 +1,15 @@
-hello
+SYMBOL TABLES : 
 
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
+
+################################################# Global Symbol Table ################################################# 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
-  multiply_time_pass                null                   0                   0                   a           function 
+       multiply_func                null                   0                   0                   a           function 
                stuff                null                   0                   0                   a           function 
                 main                null                   0                   0              retVal           function 
 
-+++++++++++++++++++++++++++++++ multiply_time_pass Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  multiply_func Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -28,7 +29,7 @@
                  t28                null                   8                  96                null              float 
                  t29                null                   8                 104                null              float 
 
-+++++++++++++++++++++++++++++++ stuff Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  stuff Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -43,7 +44,7 @@
                  t32                null                   8                  32                null              float 
                    i                   0                    4                  40                null                int 
 
-+++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  main Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -79,6 +80,12 @@
                  t16                null                   4                2482                null                int 
                  t17                null                   4                2486                null                int 
                  t18                null                   4                2490                null                int 
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+
+
+QUADS : 
+
   0) main : 
   1) t0 = 9
   2) t1 = 0
@@ -110,7 +117,7 @@
  28) n = t17
  29) t18 = 0
  30) return t18
- 31) multiply_time_pass : 
+ 31) multiply_func : 
  32) t19 = int2dbl(b)
  33) t20 = a * t19
  34) ans = t20
@@ -132,3 +139,6 @@
  50) t31 = int2dbl(a)
  51) t32 = t31 + b
  52) return c
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+

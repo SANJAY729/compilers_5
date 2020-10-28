@@ -1,6 +1,7 @@
-hello
+SYMBOL TABLES : 
 
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
+
+################################################# Global Symbol Table ################################################# 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -10,7 +11,7 @@
                tempo                null                   0                   0                   a           function 
                 main                null                   0                   0              retVal           function 
 
-+++++++++++++++++++++++++++++++ hello Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  hello Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -19,7 +20,7 @@
               retVal                null                   4                   8                null                int 
                  t22                null                   4                  12                null                int 
 
-+++++++++++++++++++++++++++++++ hi Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  hi Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -32,7 +33,7 @@
                  t20                null                   4                  24                null                int 
                  t21                null                   4                  28                null                int 
 
-+++++++++++++++++++++++++++++++ lol Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  lol Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -46,7 +47,7 @@
                  t16                null                   4                  28                null                int 
                  t17                null                   4                  32                null                int 
 
-+++++++++++++++++++++++++++++++ tempo Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  tempo Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -56,7 +57,7 @@
                    d                null                   4                  12                null                int 
               retVal                null                   8                  16                null              float 
 
-+++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  main Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -71,6 +72,12 @@
                    d                   9                    4                  32                null                int 
                   t4                null                   8                  36                null              float 
                   t5                null                   4                  44                null                int 
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+
+
+QUADS : 
+
   0) main : 
   1) t0 = 6
   2) t1 = 7
@@ -123,3 +130,6 @@
  49) hello : 
  50) t22 = 1
  51) return t22
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+

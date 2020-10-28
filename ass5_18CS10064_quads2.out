@@ -1,6 +1,7 @@
-hello
+SYMBOL TABLES : 
 
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
+
+################################################# Global Symbol Table ################################################# 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -14,7 +15,7 @@
               divide                null                   0                  16                   a           function 
                 main                null                   0                  16              retVal           function 
 
-+++++++++++++++++++++++++++++++ sum Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  sum Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -26,7 +27,7 @@
                  t11                null                   4                  96                null                int 
                  ans                   0                    4                 100                null                int 
 
-+++++++++++++++++++++++++++++++ mod Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  mod Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -38,7 +39,7 @@
                  t13                null                   4                  40                null                int 
                  ans                   0                    8                  44                null              float 
 
-+++++++++++++++++++++++++++++++ mod2 Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  mod2 Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -51,7 +52,7 @@
                  t20                null                   4                  24                null                int 
                  t21                null                   4                  28                null                int 
 
-+++++++++++++++++++++++++++++++ divide Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  divide Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -64,7 +65,7 @@
                  t16                null                   4                  24                null                int 
                  t17                null                   4                  28                null                int 
 
-+++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  main Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -85,6 +86,12 @@
                   t7                null                   4                 332                null                int 
                   t8                null                   4                 336                null                int 
                   t9                null                   4                 340                null                int 
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+
+
+QUADS : 
+
   0) t0 = 9
   1) t1 = 10
   2) main : 
@@ -144,3 +151,6 @@
  56) t21 = b - t20
  57) ans = t21
  58) return ans
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+

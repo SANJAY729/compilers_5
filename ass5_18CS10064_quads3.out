@@ -1,6 +1,7 @@
-hello
+SYMBOL TABLES : 
 
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
+
+################################################# Global Symbol Table ################################################# 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -8,7 +9,7 @@
                 test                   1                    4                   4                null                int 
                 main                null                   0                   8              retVal           function 
 
-+++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
+#################################################  main Symbol Table #################################################  
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -35,7 +36,7 @@
                  t16                null                   8                 504                null              float 
                  t17                null                   8                 512                null              float 
                  t18                null                   4                 520                null                int 
-            timepass                  90                    4                 524                null                int 
+                temp                  90                    4                 524                null                int 
                  t19                null                   4                 528                null                int 
                  t20                null                   4                 532                null                int 
                  t21                null                   4                 536                null                int 
@@ -51,6 +52,12 @@
                  t31                null                   8                 580                null              float 
                  t32                null                   8                 588                null              float 
                  t33                null                   8                 596                null              float 
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+
+
+QUADS : 
+
   0) t0 = 1
   1) main : 
   2) t1 = 20
@@ -87,9 +94,9 @@
  33) arr_d[t13] = t17
  34) goto 25
  35) t18 = 90
- 36) t19 = timepass * timepass
- 37) t20 = timepass + t19
- 38) timepass = t20
+ 36) t19 = temp * temp
+ 37) t20 = temp + t19
+ 38) temp = t20
  39) t21 = 0
  40) i = t21
  41) if i < n goto 47
@@ -119,4 +126,7 @@
  65) t33 = t32 * t31
  66) arr_d[t29] = t33
  67) goto 58
- 68) return timepass
+ 68) return temp
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
+

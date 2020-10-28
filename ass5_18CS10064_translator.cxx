@@ -417,16 +417,19 @@ int main(){
   construct_quad_list(100);
  
   quad_array = new quadArray(100000); 
-  int x = yyparse();printf("hello\n");
-  printf("\n+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++\n\n");
+  int x = yyparse();
+  printf("SYMBOL TABLES : \n\n");
+  printf("\n################################################# Global Symbol Table ################################################# \n\n");
   symbol_table->print_Table();
   int i,j;
   for(i=0;i<=symbol_table->curr_length;i++){
   	if((symbol_table->table[i]).nestedTable){
-  		printf("\n+++++++++++++++++++++++++++++++ %s Symbol Table +++++++++++++++++++++++++++++++ \n\n",(symbol_table->table[i]).name);
+  		printf("\n#################################################  %s Symbol Table #################################################  \n\n",(symbol_table->table[i]).name);
   		((symbol_table->table[i]).nestedTable)->print_Table();
   	}
-  }
+  }printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  \n\n");
+  printf("\nQUADS : \n\n");
   quad_array->print_quadArray();
+  printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  \n\n");
   return 0;
 }

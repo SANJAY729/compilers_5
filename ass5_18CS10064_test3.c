@@ -9,11 +9,11 @@ int main () {
         arr_int[i]=i+1;
     for(i=n;i>=0;i--)
         arr_d[i]=i*0.1;
-    int timepass =90;
-    timepass=timepass+timepass*timepass;
+    int temp =90;
+    temp=temp+temp*temp;
     for(i=0;i<n;i++)
         arr_int[i]=i+1;
     for(i=n;i>=0;i--)
         arr_d[i]=i*0.1;
-    return timepass;
+    return temp;
  }

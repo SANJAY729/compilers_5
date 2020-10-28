@@ -1,15 +1,15 @@
-void time_pass2(int temp, int elements);
-int time_pass(int int_var, int elements,int value);
+void func2(int temp, int elements);
+int func(int int_var, int elements,int value);
 int main();
 
-void time_pass2(int temp, int elements)
+void func2(int temp, int elements)
 {
   temp = elements;
   temp = temp+1;
   return;
 }
 
-int time_pass(int int_var, int elements,int value)
+int func(int int_var, int elements,int value)
 {
   int i ,passes = 0 ;
   if(int_var>= value)
@@ -27,14 +27,14 @@ int main()
   {
     int int_var=3;
     int result;
-    time_pass2(int_var,3);
-    result = time_pass(int_var,4,3);
+    func2(int_var,3);
+    result = func(int_var,4,3);
   }
   else
   {
     int int_var=11;
     int result;
-    time_pass2(int_var,11);
+    func2(int_var,11);
   }
   return 0;
 }

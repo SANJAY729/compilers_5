@@ -1,4 +1,4 @@
-float multiply_time_pass(float a,int b);
+float multiply_func(float a,int b);
 char stuff(int a,float b, char c);
 int main();
 int main()
@@ -32,7 +32,7 @@ int main()
     
 }
 
-float multiply_time_pass(float a,int b)
+float multiply_func(float a,int b)
 {
     float ans;
     ans=a * b;
