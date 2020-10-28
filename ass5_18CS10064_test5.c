@@ -1,31 +1,31 @@
 int hello(int a, int b);
 int hi(int a,int b,int c);
-int lol(int a,int b, int c);
-float tempo(int a,int b,int c,int d);
+int testing(int a,int b, int c);
+float some_func(int a,int b,int c,int d);
 int main();
 int main()
 {
-	int a=6,b=7,c=8,d=9;
-	tempo(a,b,c,d);
+	int a=1,b=2,c=3,d=4;
+	some_func(a,b,c,d);
 	return 0;
 }
-float tmepo(int a,int b,int c,int d)
+float some_func(int a,int b,int c,int d)
 {
 	hi(a,b,c);
 	hello(a,b);
-	lol(a,b,c);
-	return 2.0*7;
+	testing(a,b,c);
+	return 6*7.0;
 }
-int lol(int a,int b, int c)
+int testing(int a,int b, int c)
 {
 	hi(a,b,c);
 	hello(a,b);
-	return 3+4;
+	return 1+10;
 }
 int hi(int a,int b,int c)
 {
 	hello(a,b);
-	return 3+9;
+	return 4+12;
 }
 int hello(int a,int b)
 {

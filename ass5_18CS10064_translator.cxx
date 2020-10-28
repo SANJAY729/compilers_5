@@ -8,7 +8,11 @@
 #include <assert.h>
 using namespace std;
 #define TEMP_MAX_SIZE 1000
-
+symbolTable *symbol_table = 0;
+symbolTable *current = 0;
+symbolTable *temp = 0;
+symbolTable *temp_use = 0;
+quadArray *quad_array = 0;
 symbol_table_fields::symbol_table_fields(char *name_f, tNode *Type_f, void *initial_value_f, int size_f, int offset_f, symbolTable *nestedTable_f) 
 : name(name_f), Type(Type_f), initial_value(initial_value_f), size(size_f), offset(offset_f), nestedTable(nestedTable_f) {}
 void symbol_table_fields::operator=(symbol_table_fields &x){
@@ -29,7 +33,6 @@ void symbol_table_fields::print_row(){
 	if(nestedTable == NULL)
 		cout<<setw(20)<<"null";
 	else
-		// printf("%s \t",(nestedTable->table)[0].name);
 		cout<<setw(20)<<(nestedTable->table)[0].name;
 	print_Tree(Type);
 }
@@ -86,7 +89,7 @@ symbol_table_fields *symbolTable::gentemp(date_types temp){
 	this->insert(x);
 	return &((this->table)[curr_length]);
 }
-/* Implementation of fields_quad */
+
 
 fields_quad::fields_quad(char *arg1_f, char *arg2_f, char *res_f, quad_data_types op_f, symbol_table_fields *arg1_loc_f, symbol_table_fields *arg2_loc_f, symbol_table_fields *res_loc_f) : arg1(arg1_f), arg2(arg2_f), res(res_f), op(op_f), arg1_loc(arg1_loc_f), arg2_loc(arg2_loc_f), res_loc(res_loc_f) {}
 
@@ -392,30 +395,22 @@ parameter_list *merge_param_list(parameter_list *l1, parameter_list *l2){
 	temp->next = l2;
 	return l1;
 }
-tNode *t = 0;
-int w;	
-symbolTable *symbol_table = 0;
-symbolTable *current = 0;
-symbolTable *temp = 0;
-symbolTable *temp_use = 0;
-int flag1 = 0;
-int flag2 = 0;
-int c = 0;
-char *func_name;								
+int flag_array = 0;
 int line_count = 0;
 int temp_count = 0;
 int next_instr = 0;
-quadArray *quad_array = 0;
-int flag_array = 0;
-
-
+tNode *t = 0;
+int w;	
+int flag1 = 0;
+int flag2 = 0;
+int c = 0;
+char *func_name;	
 int main(){
   symbol_table = construct_Symbol_Table();
   temp = symbol_table;
   current = symbol_table;
   current = temp;
-  construct_quad_list(100);
- 
+  construct_quad_list(100); 
   quad_array = new quadArray(100000); 
   int x = yyparse();
   printf("SYMBOL TABLES : \n\n");

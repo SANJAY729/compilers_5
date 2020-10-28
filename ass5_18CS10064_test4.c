@@ -3,7 +3,6 @@ char stuff(int a,float b, char c);
 int main();
 int main()
 {
-    //declaration of all types
     int n=9;
     if(n>=0)
     {
