@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
@@ -37,8 +37,8 @@
               retVal                null                   4                   0                null                int 
                   t4                null                   4                   4                null                int 
                    n                   3                    4                   8                null                int 
-                  t5                null                   4                  12                null                int 
-                   i                   0                    4                  16                null                int 
+                   i                null                   4                  12                null                int 
+                  t5                null                   4                  16                null                int 
                   t6                null                   4                  20                null                int 
                   t7                null                   4                  24                null                int 
                   t8                null                   4                  28                null                int 
@@ -56,6 +56,7 @@
               result                null                   4                  72                null                int 
                  t17                null                   4                  76                null                int 
                  t18                null                   0                  80                null               void 
+                 t19                null                   4                  80                null                int 
   0) time_pass2 : 
   1) temp = elements
   2) t0 = 1
@@ -74,32 +75,38 @@
  15) main : 
  16) t4 = 3
  17) t5 = 0
- 18) if i < n goto (null)
- 19) goto (null)
- 20) t6 = i
- 21) i = i + 1
- 22) t7 = 1
- 23) t8 = i + t7
- 24) i = t8
- 25) t9 = 0
- 26) if n >= t9 goto 29
- 27) goto 42
- 28) goto 47
- 29) t10 = 3
- 30) t11 = 3
- 31) param int_var
- 32) param t11
- 33) t12 = call time_pass2, 2
- 34) t13 = 4
- 35) t14 = 3
- 36) param int_var
- 37) param t13
- 38) param t14
- 39) t15 = call time_pass, 3
- 40) result = t15
- 41) goto (null)
- 42) t16 = 11
- 43) t17 = 11
- 44) param int_var
- 45) param t17
- 46) t18 = call time_pass2, 2
+ 18) i = t5
+ 19) if i < n goto 25
+ 20) goto 29
+ 21) goto 29
+ 22) t6 = i
+ 23) i = i + 1
+ 24) goto 19
+ 25) t7 = 1
+ 26) t8 = i + t7
+ 27) i = t8
+ 28) goto 22
+ 29) t9 = 0
+ 30) if n >= t9 goto 33
+ 31) goto 46
+ 32) goto 51
+ 33) t10 = 3
+ 34) t11 = 3
+ 35) param int_var
+ 36) param t11
+ 37) t12 = call time_pass2, 2
+ 38) t13 = 4
+ 39) t14 = 3
+ 40) param int_var
+ 41) param t13
+ 42) param t14
+ 43) t15 = call time_pass, 3
+ 44) result = t15
+ 45) goto 51
+ 46) t16 = 11
+ 47) t17 = 11
+ 48) param int_var
+ 49) param t17
+ 50) t18 = call time_pass2, 2
+ 51) t19 = 0
+ 52) return t19

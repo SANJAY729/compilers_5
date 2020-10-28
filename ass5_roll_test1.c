@@ -20,7 +20,8 @@ int time_pass(int int_var, int elements,int value)
 int main()
 {
   int n=3;
-  for(int i=0;i<n;i++)
+  int i;
+  for(i=0;i<n;i++)
     i=i+1;
   if(n>=0)
   {
@@ -35,4 +36,5 @@ int main()
     int result;
     time_pass2(int_var,11);
   }
+  return 0;
 }
