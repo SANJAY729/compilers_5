@@ -5,7 +5,7 @@
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
   multiply_time_pass                null                   0                   0                   a           function 
-   do_not_what_it_is                null                   0                   0                   a           function 
+               stuff                null                   0                   0                   a           function 
                 main                null                   0                   0              retVal           function 
 
 +++++++++++++++++++++++++++++++ multiply_time_pass Symbol Table +++++++++++++++++++++++++++++++ 
@@ -28,7 +28,7 @@
                  t28                null                   8                  96                null              float 
                  t29                null                   8                 104                null              float 
 
-+++++++++++++++++++++++++++++++ do_not_what_it_is Symbol Table +++++++++++++++++++++++++++++++ 
++++++++++++++++++++++++++++++++ stuff Symbol Table +++++++++++++++++++++++++++++++ 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
@@ -127,7 +127,7 @@
  45) t29 = t27 + t28
  46) ans = t29
  47) return ans
- 48) do_not_what_it_is : 
+ 48) stuff : 
  49) t30 = & c
  50) t31 = int2dbl(a)
  51) t32 = t31 + b

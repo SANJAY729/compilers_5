@@ -1,5 +1,5 @@
 float multiply_time_pass(float a,int b);
-char do_not_what_it_is(int a,float b, char c);
+char stuff(int a,float b, char c);
 int main();
 int main()
 {
@@ -42,7 +42,7 @@ float multiply_time_pass(float a,int b)
     return ans;
 }
 
-char do_not_what_it_is(int a,float b, char c)
+char stuff(int a,float b, char c)
 {
     float kt=b;
     char *p=&c;

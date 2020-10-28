@@ -37,4 +37,4 @@ ass5_18CS10064_translator.o: ass5_18CS10064_translator.h ass5_18CS10064_translat
 	g++ -c ass5_18CS10064_translator.cxx
 
 clean:
-	rm a.out y.tab.o lex.yy.o lex.yy.c y.tab.c y.tab.h y.ass5_18CS10064_quads ass5_18CS10064_translator.o ass5_18CS10064_quads*.out
+	rm a.out y.tab.o lex.yy.o lex.yy.c y.tab.c y.tab.h y.ass5_18CS10064_quads ass5_18CS10064_translator.o ass5_18CS10064_quads*.out y.output
