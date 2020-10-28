@@ -1,4 +1,4 @@
-/*void time_pass2(int temp, int elements);
+void time_pass2(int temp, int elements);
 int time_pass(int int_var, int elements,int value);
 int main();
 
@@ -34,17 +34,5 @@ int main()
     int int_var=11;
     int result;
     time_pass2(int_var,11);
-  }
-}
-*/
-int main();
-int main(){
-  int a = 10;
-  int b = 5;
-  if(a>b){
-    a = a+1;
-  }
-  else{
-    b = b+1;
   }
 }

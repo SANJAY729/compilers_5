@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
@@ -15,7 +15,7 @@
                   t1                null                   4                   4                null                int 
              arr_int                null                  80                   8                null              array 20 int 
                   t2                null                   4                  88                null                int 
-               arr_d                null                 344                  92                null              array 43 double 
+               arr_d                null                 344                  92                null              array 43 float 
                   t3                null                   4                 436                null                int 
                    i                   0                    4                 440                null                int 
                   t4                null                   4                 444                null                int 
@@ -29,10 +29,10 @@
                  t11                null                   4                 476                null                int 
                  t12                null                   4                 480                null                int 
                  t13                null                   4                 484                null                int 
-                 t14                null                   8                 488                null             double 
-                 t15                null                   8                 496                null             double 
-                 t16                null                   8                 504                null             double 
-                 t17                null                   8                 512                null             double 
+                 t14                null                   8                 488                null              float 
+                 t15                null                   8                 496                null              float 
+                 t16                null                   8                 504                null              float 
+                 t17                null                   8                 512                null              float 
                  t18                null                   4                 520                null                int 
             timepass                  90                    4                 524                null                int 
                  t19                null                   4                 528                null                int 
@@ -46,10 +46,10 @@
                  t27                null                   4                 560                null                int 
                  t28                null                   4                 564                null                int 
                  t29                null                   4                 568                null                int 
-                 t30                null                   8                 572                null             double 
-                 t31                null                   8                 580                null             double 
-                 t32                null                   8                 588                null             double 
-                 t33                null                   8                 596                null             double 
+                 t30                null                   8                 572                null              float 
+                 t31                null                   8                 580                null              float 
+                 t32                null                   8                 588                null              float 
+                 t33                null                   8                 596                null              float 
   0) t0 = 1
   1) main : 
   2) t1 = 20

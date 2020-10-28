@@ -6,7 +6,7 @@
 %}
 
 digit 					[0-9]
-identifier-nondigit 	[a-zA-Z]
+identifier-nondigit 	[_a-zA-Z]
 identifier 				(({identifier-nondigit}+)({digit}*))+
 
 nonzero-digit 			[1-9]

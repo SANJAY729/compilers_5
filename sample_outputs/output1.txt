@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type

@@ -1,36 +1,0 @@
-_Error: syntax error
-
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
-
-                Name       Initial Value                Size              Offset        Nested Table              Type
-
-               hello                null                   0                   0                   a           function 
-             kaiseho                null                   0                   0                   a           function 
-                 lol                null                   0                   0                   a           function 
-                dont                null                   8                   0                null              float 
-
-+++++++++++++++++++++++++++++++ hello Symbol Table +++++++++++++++++++++++++++++++ 
-
-                Name       Initial Value                Size              Offset        Nested Table              Type
-
-                   a                null                   4                   0                null                int 
-                   b                null                   4                   4                null                int 
-              retVal                null                   4                   8                null                int 
-
-+++++++++++++++++++++++++++++++ kaiseho Symbol Table +++++++++++++++++++++++++++++++ 
-
-                Name       Initial Value                Size              Offset        Nested Table              Type
-
-                   a                null                   4                   0                null                int 
-                   b                null                   4                   4                null                int 
-                   c                null                   4                   8                null                int 
-              retVal                null                   4                  12                null                int 
-
-+++++++++++++++++++++++++++++++ lol Symbol Table +++++++++++++++++++++++++++++++ 
-
-                Name       Initial Value                Size              Offset        Nested Table              Type
-
-                   a                null                   4                   0                null                int 
-                   b                null                   4                   4                null                int 
-                   c                null                   4                   8                null                int 
-              retVal                null                   4                  12                null                int 

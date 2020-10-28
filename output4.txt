@@ -1,7 +1,0 @@
-_Error: syntax error
-
-+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
-
-                Name       Initial Value                Size              Offset        Nested Table              Type
-
-            multiply                null                   8                   0                null              float 

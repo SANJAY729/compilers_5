@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
@@ -21,7 +21,7 @@
                    b                null                   4                   4                null                int 
               retVal                null                   4                   8                null                int 
                  t10                null                   4                  12                null                int 
-                 ar2                null                  80                  16                null              array 10 double 
+                 ar2                null                  80                  16                null              array 10 float 
                  t11                null                   4                  96                null                int 
                  ans                   0                    4                 100                null                int 
 
@@ -33,9 +33,9 @@
                    b                null                   4                   4                null                int 
               retVal                null                   4                   8                null                int 
                  t12                null                   4                  12                null                int 
-               armod                null                  24                  16                null              array 3 double 
+               armod                null                  24                  16                null              array 3 float 
                  t13                null                   4                  40                null                int 
-                 ans                   0                    8                  44                null             double 
+                 ans                   0                    8                  44                null              float 
 
 +++++++++++++++++++++++++++++++ mod2 Symbol Table +++++++++++++++++++++++++++++++ 
 
@@ -72,8 +72,8 @@
                   t3                null                   4                   8                null                int 
                  ar1                null                 200                  12                null              array 5 array 10 int 
                   t4                null                   4                 212                null                int 
-                 ar2                null                  80                 216                null              array 10 double 
-                   y                null                   8                 296                null             double 
+                 ar2                null                  80                 216                null              array 10 float 
+                   y                null                   8                 296                null              float 
                    z                null                   4                 304                null                int 
                    x                null                   4                 308                null                int 
                    y                null                   4                 312                null                int 

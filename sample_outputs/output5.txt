@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
@@ -53,14 +53,14 @@ dont_know_what_to_do                null                   0                   0
                    b                null                   4                   4                null                int 
                    c                null                   4                   8                null                int 
                    d                null                   4                  12                null                int 
-              retVal                null                   8                  16                null             double 
+              retVal                null                   8                  16                null              float 
                   t6                null                   4                  24                null                int 
                   t7                null                   4                  28                null                int 
                   t8                null                   4                  32                null                int 
-                  t9                null                   8                  36                null             double 
+                  t9                null                   8                  36                null              float 
                  t10                null                   4                  44                null                int 
-                 t11                null                   8                  48                null             double 
-                 t12                null                   8                  56                null             double 
+                 t11                null                   8                  48                null              float 
+                 t12                null                   8                  56                null              float 
 
 +++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
 
@@ -75,7 +75,7 @@ dont_know_what_to_do                null                   0                   0
                    c                   8                    4                  24                null                int 
                   t3                null                   4                  28                null                int 
                    d                   9                    4                  32                null                int 
-                  t4                null                   8                  36                null             double 
+                  t4                null                   8                  36                null              float 
                   t5                null                   4                  44                null                int 
   0) main : 
   1) t0 = 6

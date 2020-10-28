@@ -1,4 +1,4 @@
-
+
 +++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
@@ -11,35 +11,35 @@
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
-                   a                null                   8                   0                null             double 
+                   a                null                   8                   0                null              float 
                    b                null                   4                   8                null                int 
-              retVal                null                   8                  12                null             double 
-                 ans                null                   8                  20                null             double 
-                 t19                null                   8                  28                null             double 
-                 t20                null                   8                  36                null             double 
-                 t21                null                   8                  44                null             double 
-                 t22                null                   8                  52                null             double 
-                 t23                null                   8                  60                null             double 
-                 t24                null                   8                  68                null             double 
+              retVal                null                   8                  12                null              float 
+                 ans                null                   8                  20                null              float 
+                 t19                null                   8                  28                null              float 
+                 t20                null                   8                  36                null              float 
+                 t21                null                   8                  44                null              float 
+                 t22                null                   8                  52                null              float 
+                 t23                null                   8                  60                null              float 
+                 t24                null                   8                  68                null              float 
                  t25                null                   4                  76                null                int 
-                 t26                null                   8                  80                null             double 
-                 t27                null                   8                  88                null             double 
-                 t28                null                   8                  96                null             double 
-                 t29                null                   8                 104                null             double 
+                 t26                null                   8                  80                null              float 
+                 t27                null                   8                  88                null              float 
+                 t28                null                   8                  96                null              float 
+                 t29                null                   8                 104                null              float 
 
 +++++++++++++++++++++++++++++++ do_not_what_it_is Symbol Table +++++++++++++++++++++++++++++++ 
 
                 Name       Initial Value                Size              Offset        Nested Table              Type
 
                    a                null                   4                   0                null                int 
-                   b                null                   8                   4                null             double 
+                   b                null                   8                   4                null              float 
                    c                null                   1                  12                null               char 
               retVal                null                   1                  13                null               char 
-                  kt                   0                    8                  14                null             double 
+                  kt                   0                    8                  14                null              float 
                  t30                null                   1                  22                null               char 
                    p                   1                  23                null                ptr char 
-                 t31                null                   8                  24                null             double 
-                 t32                null                   8                  32                null             double 
+                 t31                null                   8                  24                null              float 
+                 t32                null                   8                  32                null              float 
                    i                   0                    4                  40                null                int 
 
 +++++++++++++++++++++++++++++++ main Symbol Table +++++++++++++++++++++++++++++++ 
@@ -59,7 +59,7 @@
                    c                   c                    1                  25                null               char 
                   t6                null                   4                  26                null                int 
                   t7                null                   4                  30                null                int 
-                  dp                null                2400                  34                null              array 20 array 15 double 
+                  dp                null                2400                  34                null              array 20 array 15 float 
                   t8                null                   1                2434                null               char 
                    d                   1                2435                null                ptr char 
                   t9                null                   4                2436                null                int 
