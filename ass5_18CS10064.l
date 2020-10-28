@@ -1,6 +1,6 @@
 %{
 #include <stdio.h>
-#include "ass5_roll_translator.h"
+#include "ass5_18CS10064_translator.h"
 #include "y.tab.h"
 #include <math.h>
 %}
@@ -100,7 +100,7 @@ white-space 			[ \t\n]
 {single-char-punctuator}	{return yytext[0];}
 {singleline-comments}       {}
 {multiline-comments}        {}
-{white-space}               {}
+{white-space}               {;}
 
 %%
 int yywrap(){}

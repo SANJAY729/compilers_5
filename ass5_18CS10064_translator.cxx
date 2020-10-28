@@ -1,4 +1,4 @@
-# include "ass5_roll_translator.h"
+# include "ass5_18CS10064_translator.h"
 # include "y.tab.h"
 # include <string.h>
 # include <stdlib.h>
@@ -415,8 +415,9 @@ int main(){
   current = symbol_table;
   current = temp;
   construct_quad_list(100);
-  quad_array = new quadArray(100000);
-  int x = yyparse();
+ 
+  quad_array = new quadArray(100000); 
+  int x = yyparse();printf("hello\n");
   printf("\n+++++++++++++++++++++++++++++++ Global Symbol Table +++++++++++++++++++++++++++++++\n\n");
   symbol_table->print_Table();
   int i,j;

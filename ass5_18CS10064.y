@@ -2,7 +2,7 @@
 #include <stdio.h>
 extern int yylex();
 void yyerror(const char*);
-#include "ass5_roll_translator.h"
+#include "ass5_18CS10064_translator.h"
 #include <string.h>
 %}
 
