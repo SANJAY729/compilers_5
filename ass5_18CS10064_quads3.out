@@ -1,4 +1,4 @@
-SYMBOL TABLES : 
+SYMBOL TABLES : 
 
 
 ################################################# Global Symbol Table ################################################# 
@@ -15,43 +15,29 @@
 
               retVal                null                   4                   0                null                int 
                   t1                null                   4                   4                null                int 
-             arr_int                null                  80                   8                null              array 20 int 
+               arr_i                null                  80                   8                null              array 20 int 
                   t2                null                   4                  88                null                int 
-               arr_d                null                 344                  92                null              array 43 float 
-                  t3                null                   4                 436                null                int 
-                   i                   0                    4                 440                null                int 
-                  t4                null                   4                 444                null                int 
-                   n                   9                    4                 448                null                int 
-                  t5                null                   4                 452                null                int 
-                  t6                null                   4                 456                null                int 
-                  t7                null                   4                 460                null                int 
-                  t8                null                   4                 464                null                int 
-                  t9                null                   4                 468                null                int 
-                 t10                null                   4                 472                null                int 
-                 t11                null                   4                 476                null                int 
-                 t12                null                   4                 480                null                int 
-                 t13                null                   4                 484                null                int 
-                 t14                null                   8                 488                null              float 
-                 t15                null                   8                 496                null              float 
-                 t16                null                   8                 504                null              float 
-                 t17                null                   8                 512                null              float 
-                 t18                null                   4                 520                null                int 
-                temp                  90                    4                 524                null                int 
-                 t19                null                   4                 528                null                int 
-                 t20                null                   4                 532                null                int 
-                 t21                null                   4                 536                null                int 
-                 t22                null                   4                 540                null                int 
-                 t23                null                   4                 544                null                int 
-                 t24                null                   4                 548                null                int 
-                 t25                null                   4                 552                null                int 
-                 t26                null                   4                 556                null                int 
-                 t27                null                   4                 560                null                int 
-                 t28                null                   4                 564                null                int 
-                 t29                null                   4                 568                null                int 
-                 t30                null                   8                 572                null              float 
-                 t31                null                   8                 580                null              float 
-                 t32                null                   8                 588                null              float 
-                 t33                null                   8                 596                null              float 
+               arr_d                null                 128                  92                null              array 16 float 
+                  t3                null                   4                 220                null                int 
+                   i                   0                    4                 224                null                int 
+                  t4                null                   4                 228                null                int 
+                   n                   9                    4                 232                null                int 
+                  t5                null                   4                 236                null                int 
+                  t6                null                   4                 240                null                int 
+                  t7                null                   4                 244                null                int 
+                  t8                null                   8                 248                null              float 
+                  t9                null                   4                 256                null                int 
+                 t10                null                   4                 260                null                int 
+                 t11                null                   4                 264                null                int 
+                 t12                null                   4                 268                null                int 
+                   x                 149                    4                 272                null                int 
+                 t13                null                   4                 276                null                int 
+                 t14                null                   4                 280                null                int 
+                 t15                null                   4                 284                null                int 
+                 t16                null                   4                 288                null                int 
+                 t17                null                   4                 292                null                int 
+                 t18                null                   4                 296                null                int 
+                 t19                null                   4                 300                null                int 
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
 
@@ -61,72 +47,42 @@ QUADS :
   0) t0 = 1
   1) main : 
   2) t1 = 20
-  3) t2 = 43
+  3) t2 = 16
   4) t3 = 0
   5) t4 = 9
-  6) t5 = 0
-  7) i = t5
-  8) if i < n goto 14
-  9) goto 20
- 10) goto 20
+  6) i = n
+  7) t5 = 0
+  8) if i >= t5 goto 14
+  9) goto 21
+ 10) goto 21
  11) t6 = i
- 12) i = i + 1
- 13) goto 8
- 14) t7 = i * 4
- 15) t8 = arr_int[t7]
- 16) t9 = 1
- 17) t10 = i + t9
- 18) arr_int[t7] = t10
- 19) goto 11
- 20) i = n
- 21) t11 = 0
- 22) if i >= t11 goto 28
- 23) goto 35
- 24) goto 35
- 25) t12 = i
- 26) i = i - 1
- 27) goto 21
- 28) t13 = i * 8
- 29) t14 = arr_d[t13]
- 30) t15 = 0.100000
- 31) t16 = int2dbl(i)
- 32) t17 = t16 * t15
- 33) arr_d[t13] = t17
- 34) goto 25
- 35) t18 = 90
- 36) t19 = temp * temp
- 37) t20 = temp + t19
- 38) temp = t20
- 39) t21 = 0
- 40) i = t21
- 41) if i < n goto 47
- 42) goto 53
- 43) goto 53
- 44) t22 = i
- 45) i = i + 1
- 46) goto 41
- 47) t23 = i * 4
- 48) t24 = arr_int[t23]
- 49) t25 = 1
- 50) t26 = i + t25
- 51) arr_int[t23] = t26
- 52) goto 44
- 53) i = n
- 54) t27 = 0
- 55) if i >= t27 goto 61
- 56) goto 68
- 57) goto 68
- 58) t28 = i
- 59) i = i - 1
- 60) goto 54
- 61) t29 = i * 8
- 62) t30 = arr_d[t29]
- 63) t31 = 0.100000
- 64) t32 = int2dbl(i)
- 65) t33 = t32 * t31
- 66) arr_d[t29] = t33
- 67) goto 58
- 68) return temp
+ 12) i = i - 1
+ 13) goto 7
+ 14) t7 = i * 8
+ 15) t8 = arr_d[t7]
+ 16) t9 = 3
+ 17) t10 = i / t9
+ 18) t11 = dbl2int(t8)
+ 19) arr_d[t7] = t11
+ 20) goto 11
+ 21) t12 = 149
+ 22) t13 = x + x
+ 23) t14 = t13 + x
+ 24) x = t14
+ 25) t15 = 5
+ 26) i = t15
+ 27) t16 = 132
+ 28) if i < t16 goto 34
+ 29) goto 38
+ 30) goto 38
+ 31) t17 = i
+ 32) i = i + 1
+ 33) goto 27
+ 34) t18 = 3
+ 35) t19 = i + t18
+ 36) i = t19
+ 37) goto 31
+ 38) return x
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  
 

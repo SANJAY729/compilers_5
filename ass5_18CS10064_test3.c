@@ -1,19 +1,15 @@
 int test = 1;
 int main();
 int main () {
-    int arr_int[20];
-    float arr_d[43];
+    int arr_i[20];
+    float arr_d[16];
     int i=0;
     int n=9;
-    for(i=0;i<n;i++)
-        arr_int[i]=i+1;
     for(i=n;i>=0;i--)
-        arr_d[i]=i*0.1;
-    int temp =90;
-    temp=temp+temp*temp;
-    for(i=0;i<n;i++)
-        arr_int[i]=i+1;
-    for(i=n;i>=0;i--)
-        arr_d[i]=i*0.1;
-    return temp;
- }
+        arr_d[i]=i / 3;
+    int x = 149;
+    x = x + x + x;
+    for (i=5;i<132;i++)
+        i = i + 3;
+    return x;
+}

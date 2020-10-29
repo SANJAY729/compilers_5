@@ -1,8 +1,7 @@
-int a=9;
-int b=10;
+int a=91;
+int b=102;
 int sum(int a,int b);
-int mod(int a, int b);
-int mod2(int a,int b);
+int diff(int a, int b);
 int divide(int a,int b);
 int main();
 int main()
@@ -13,9 +12,9 @@ int main()
 	int z;
 	int x,y,z,w;
 	x = sum(a,b);
-	y = mod(a,b);
+	y = diff(a,b);
 	z = divide(a,b);
-	w = mod2(a,b);
+	return 0;
 }
 int sum(int a,int b)
 {
@@ -24,10 +23,9 @@ int sum(int a,int b)
 	return ans;
 }
 
-int mod(int a,int b)
+int diff(int a,int b)
 {
-	float armod[3];
-	float ans=a%b;
+	float ans=a-b;
 	return ans;
 }
 
@@ -35,17 +33,9 @@ int divide(int a,int b)
 {
 	int ans;
 	if(b!=0)
-		ans=a/b;
+		ans = a/b;
 	else
 		ans=-1;
-	return ans;
-}
-int mod2(int a,int b)
-{
-	int ans;
-	if(a>b)
-		ans=a-divide(a,b);
-	else
-		ans=b-divide(a,b);
+	ans = ans - 4;
 	return ans;
 }
